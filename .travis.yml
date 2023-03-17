@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t bpatelz/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t bpatz/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true bpatelz/react-test npm test
+  - docker run -e CI=true bpatz/react-test npm test
 
 after_success:
-  - docker build -t bpatelz/multi-client ./client
-  - docker build -t bpatelz/multi-nginx ./nginx
-  - docker build -t bpatelz/multi-server ./server
-  - docker build -t bpatelz/multi-worker ./worker
+  - docker build -t bpatz/multi-client ./client
+  - docker build -t bpatz/multi-nginx ./nginx
+  - docker build -t bpatz/multi-server ./server
+  - docker build -t bpatz/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push bpatelz/multi-client
-  - docker push bpatelz/multi-nginx
-  - docker push bpatelz/multi-server
-  - docker push bpatelz/multi-worker
+  - docker push bpatz/multi-client
+  - docker push bpatz/multi-nginx
+  - docker push bpatz/multi-server
+  - docker push bpatz/multi-worker

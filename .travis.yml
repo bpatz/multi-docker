@@ -15,8 +15,10 @@ after_success:
   - docker build -t bpatelz/multi-nginx ./nginx
   - docker build -t bpatelz/multi-server ./server
   - docker build -t bpatelz/multi-worker ./worker
+  
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
   # Take those images and push them to docker hub
   - docker push bpatelz/multi-client
   - docker push bpatelz/multi-nginx
